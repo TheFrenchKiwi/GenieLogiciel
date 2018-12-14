@@ -9,9 +9,8 @@ from lxml import etree
 
 def createXmlFile(text):
 	
-# create the file structure
 
-# create a new XML file with the results
+
 				
 		filename = text+".xml"
 		print (filename)
@@ -21,19 +20,24 @@ def createXmlFile(text):
 		userelement2 = ET.SubElement(root,"auteur")
 		userelement3 = ET.SubElement(root,"abstract")
 		userelement3 = ET.SubElement(root,"biblio")
-		root.append(userelement)
-		#myfile = open(text+".xml", "w")  
-		#myfile.write(text+".xml")  
+  
 		tree= ET.ElementTree(root)
 		tree.write(filename)
 
-def createFichier() :
+def createFichierTxt() :
 	
 			listFichierPdf = os.listdir('.') 
 
 			dir_path = os.path.dirname(os.path.abspath(__file__))
 
 			for i in listFichierPdf :
+				  if i.endswith(".pdf"):
+					  s = os.path.splitext(os.path.basename(i))[0]
+					  b= i.replace(' ', '_')
+					  os.rename (i , b)
+					  cmd=  'pdftotext ' + b  + ' ' + s +'.txt'
+					  os.system( cmd )
+					  
 				
 				  if i.endswith(".txt"):
 					  os.remove(os.path.join(dir_path, i))
@@ -41,15 +45,21 @@ def createFichier() :
 
 				
 				  
-				  if i.endswith(".pdf"):
+					
+def createFichierXml() :	
+	listFichierPdf = os.listdir('.') 
+
+	dir_path = os.path.dirname(os.path.abspath(__file__))
+
+	for i in listFichierPdf :
+		if i.endswith(".pdf"):
 					  s = os.path.splitext(os.path.basename(i))[0]
 					  b= i.replace(' ', '_')
 					  os.rename (i , b)
 					  cmd=  'pdftotext ' + b  + ' ' + s +'.txt'
 					  os.system( cmd )
-				  createXmlFile(s)
-					
-					
+					  createXmlFile(s)
+								
 					
 def createFolder():
 
@@ -78,23 +88,8 @@ def parsing():
 						f.close
 						f1.close
 		
-def return_utf(s):
-    if isinstance(s, str):
-        return s.encode('utf-8')
-    if isinstance(s, (int, float, complex)):
-        return str(s).encode('utf-8')
-    try:
-        return s.encode('utf-8')
-    except TypeError:
-        try:
-            return str(s).encode('utf-8')
-        except AttributeError:
-            return s
-    except AttributeError:
-        return s
-    return s # assume it was already utf-8
 
-def parsing2():
+def parsingTxt():
 	
 	listFichierPdf = os.listdir('.') 
 	dir_path = os.path.dirname(os.path.abspath(__file__))
@@ -106,44 +101,64 @@ def parsing2():
 						fichier = open (os.path.splitext(os.path.basename(i))[0]+'modif.txt' , "a")
 						for x , line in enumerate(f):
 							if x == 3 :
-					
-										
-											fichier.write("auteur  : " + line)
-											f.close
-											fichier.close
+								fichier.write("auteur  : " + line)
+								f.close
+								fichier.close
 													
-											tree = ET.parse(os.path.splitext(os.path.basename(i))[0]+'.xml',parser=ET.XMLParser(encoding='utf8'))  
-											root = tree.getroot()
-											for elem in root.iter('auteur'):  
-												parser = ET.XMLParser(encoding="utf-8")
-												tree = ET.fromstring(line, parser=parser)
-												elem.text =  return_utf(line)
-											tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml',encoding="utf-8")
-							
 								
-							
-							
-								
-
-						
 						with open(i, "r") as f:
-				
-							textfile_temp = f.read()
-							fichier.write("title : " +os.path.splitext(os.path.basename(i))[0] +"\n")
-							fichier.write( 'abstract : '+ textfile_temp.split("abstract")[1].split("introduction")[0])
-							fichier.close
-							f.close
-							
-							
-							tree = ET.parse(os.path.splitext(os.path.basename(i))[0]+'.xml')  
-							root = tree.getroot()
-							for elem in root.iter('titre'):  
-								elem.text = os.path.splitext(os.path.basename(i))[0] +"\n"
-							for elem in root.iter('abstract'):  
-								elem.text = textfile_temp.split("abstract")[1].split("introduction")[0]
-							tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml',encoding="utf-8") 
-			
 					
+								textfile_temp = f.read()
+								titre = os.path.splitext(os.path.basename(i))[0]
+								fichier.write("title : " +titre +"\n")
+								fichier.write( 'abstract : '+ textfile_temp.split("abstract")[1].split("introduction")[0]+ "\n")
+								titre=titre.replace("_"," ")
+								fichier.write("preamble: " +titre+ "\n")
+								
+								fichier.write("biblio : " + textfile_temp.split("references")[1].split("\n\n")[0]+"\n")
+								fichier.close
+								f.close
+									
+							
+						
+							
+			
+def parsingXml():
+	listFichierPdf = os.listdir('.') 
+	dir_path = os.path.dirname(os.path.abspath(__file__))
+		
+	for i in listFichierPdf :
+			if i.endswith(".txt"):
+		
+						
+	
+						tree = ET.parse(os.path.splitext(os.path.basename(i))[0]+'.xml',parser=ET.XMLParser(encoding='utf8'))  
+						root = tree.getroot()
+						titre = os.path.splitext(os.path.basename(i))[0]
+						with open(i, "r") as f:
+							for x , line in enumerate(f):
+								if x == 3 :
+									for elem in root.iter('auteur'):  
+										special = u"\u2022"
+										elem.text =  line.replace(special,'X')
+										tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml',encoding="utf-8")
+						with open(i, "r") as f:	
+							textfile_temp = f.read()
+							for elem in root.iter('titre'):
+								
+										titre=titre.replace("_"," ") 
+										elem.text = titre
+							for elem in root.iter('abstract'):  
+										elem.text = textfile_temp.split("abstract")[1].split("introduction")[0]
+										tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml',encoding="utf-8") 
+							for elem in root.iter('biblio'):  
+										elem.text = textfile_temp.split("references")[1].split("\n\n")[0]
+										tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml',encoding="utf-8") 
+									
+							for elem in root.iter('preamble'):  
+										elem.text = os.path.splitext(os.path.basename(i))[0] +"\n"
+										tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml',encoding="utf-8") 
+							
 					
 def lower():
 	listFichierPdf = os.listdir('.') 
@@ -161,7 +176,7 @@ def lower():
 
 
 
-def move():
+def movetxt():
 	
 		listFichierPdf = os.listdir('.')
 		dir_path = os.path.dirname(os.path.abspath(__file__))
@@ -173,18 +188,51 @@ def move():
 					
 						os.system(cmd)
 					except OSError as err:
-						print("OS error: {0}".format(err))			
+						print("OS error: {0}".format(err))		
+		
+
+
+def movexml():
+	
+		listFichierPdf = os.listdir('.')
+		dir_path = os.path.dirname(os.path.abspath(__file__))
+
+		for i in listFichierPdf :
+				if i.endswith(".txt"):
+					try:
+						cmd = 'mv '+ os.path.splitext(os.path.basename(i))[0]+'.xml' + ' ' + os.path.splitext(os.path.basename(i))[0]
+					
+						os.system(cmd)
+					except OSError as err:
+						print("OS error: {0}".format(err))		
 					
 
+
+
+def main (argv):
+	for arg in sys.argv[1:]:
+		if arg == '-t':
+			createFolder()
+			createFichierTxt() 
+			lower()	
+			parsingTxt()
+			movetxt()
+			os.system('rm *.txt')
+		if arg == '-x':
+			createFolder()
+			createFichierXml() 
+			lower()	
+			parsingXml()
+			movexml()
+			os.system('rm *.txt')
+
+		
+	
+	
+	
 if __name__ == '__main__':
 	
-	createFolder()
-	createFichier() 
-	lower()	
-	#createXmlFile();
-	parsing2()
-	move()
-	os.system('rm *.txt')
+	main(sys.argv[1:])
 
 	
 	
