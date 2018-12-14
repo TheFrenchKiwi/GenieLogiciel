@@ -1,6 +1,6 @@
 # GenieLogiciel
 
-Ce programme python va permettre :
+Ce programme python va permettre de :
 
    * Transformer un fichier pdf en texte.
    * Créer un fichier texte dans un dossier qui va résumer le fichier texte en question.
