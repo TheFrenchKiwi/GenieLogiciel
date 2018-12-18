@@ -32,9 +32,13 @@ Please read [CONTRIBUTING.md](https://github.com/TheFrenchKiwi/GenieLogiciel) fo
 
 ## Authors
 
-* **Gael** - *Initial work* - [TheFrenchKiwi](https://github.com/TheFrenchKiwi)
+* **Gael** - *Scrum Master* - [TheFrenchKiwi](https://github.com/TheFrenchKiwi)
+**Saladin leo** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+**Mathieu THomas** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+**Garcia Jeremy** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+
 
 
 ## Acknowledgments
