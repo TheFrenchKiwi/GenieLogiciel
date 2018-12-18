@@ -33,9 +33,9 @@ Please read [CONTRIBUTING.md](https://github.com/TheFrenchKiwi/GenieLogiciel) fo
 ## Authors
 
 * **Gael** - *Scrum Master* - [TheFrenchKiwi](https://github.com/TheFrenchKiwi)
-**Saladin leo** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-**Mathieu THomas** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-**Garcia Jeremy** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Saladin leo** - *Dev team* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Mathieu THomas** - *Dev team* - [Aurion195](https://github.com/Aurion195)
+* **Garcia Jeremy** - *Dev team* - [Slowblitz](https://github.com/Slowblitz)
 
 
 
