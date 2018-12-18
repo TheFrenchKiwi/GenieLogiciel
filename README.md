@@ -59,7 +59,7 @@ Please read [CONTRIBUTING.md](https://github.com/TheFrenchKiwi/GenieLogiciel/blo
 ## Authors
 
 * **Gael** - *Scrum Master* - [TheFrenchKiwi](https://github.com/TheFrenchKiwi)
-* **Saladin leo** - *Dev team* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Saladin leo** - *Dev team* - [SALADINL](https://github.com/SALADINL)
 * **Mathieu THomas** - *Dev team* - [Aurion195](https://github.com/Aurion195)
 * **Garcia Jeremy** - *Dev team* - [Slowblitz](https://github.com/Slowblitz)
 
