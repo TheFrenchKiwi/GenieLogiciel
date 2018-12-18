@@ -62,6 +62,7 @@ Please read [CONTRIBUTING.md](https://github.com/TheFrenchKiwi/GenieLogiciel/blo
 * **Saladin leo** - *Dev team* - [SALADINL](https://github.com/SALADINL)
 * **Mathieu THomas** - *Dev team* - [Aurion195](https://github.com/Aurion195)
 * **Garcia Jeremy** - *Dev team* - [Slowblitz](https://github.com/Slowblitz)
+* **Chabli Adel** - *Dev team* - [AdelChabli](https://github.com/AdelChabli)
 
 
 
