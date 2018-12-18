@@ -43,7 +43,7 @@ pdftotext
 
 ## Deployment
 
-just make sure that the ".py" is in the same directory as your pdf
+just make sure that the ".py" is in the same directory as your pdfs
 
 ## Built With
 
