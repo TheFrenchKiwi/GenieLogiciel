@@ -1,11 +1,34 @@
 # GenieLogiciel
-
-One Paragraph of project description goes here
+Simple pdf converter to xml or txt 
 
 ## Getting Started
+First copy the ".py" file in your directory where your pdf are .
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+* To use it for creating xml file Only :
 
+```
+Parsing.py -x
+
+```
+
+* To use it for creating Txt file Only :
+
+```
+Parsing.py -t
+
+```
+
+* To delete exixsting directory:
+
+```
+Parsing.py -d
+
+```
+* You can concatain these two option : 
+```
+Parsing.py -d -x
+
+```
 ### Prerequisites
 
 What things you need to install the software and how to install them
