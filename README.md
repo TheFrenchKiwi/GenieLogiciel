@@ -4,14 +4,14 @@ Simple pdf converter to xml or txt
 ## Getting Started
 First copy the ".py" file in your directory where your pdf are .
 
-* To use it for creating xml file Only :
+* To use it to creating xml file Only :
 
 ```
 Parsing.py -x
 
 ```
 
-* To use it for creating Txt file Only :
+* To use it to creating Txt file Only :
 
 ```
 python3 Parsing.py -t
@@ -24,7 +24,7 @@ python3 Parsing.py -t
 python3 Parsing.py -d
 
 ```
-* You can concatain these two option : 
+* You can also use two option : 
 ```
 python3 Parsing.py -d -x
 
@@ -36,11 +36,14 @@ What things you need to install the software and how to install them
 ```
 python3
 ```
+```
+pdftotext
+```
 
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+just make sure that the ".py" is in the same directory as your pdf
 
 ## Built With
 
