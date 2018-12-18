@@ -14,19 +14,19 @@ Parsing.py -x
 * To use it for creating Txt file Only :
 
 ```
-Parsing.py -t
+python3 Parsing.py -t
 
 ```
 
 * To delete exixsting directory:
 
 ```
-Parsing.py -d
+python3 Parsing.py -d
 
 ```
 * You can concatain these two option : 
 ```
-Parsing.py -d -x
+python3 Parsing.py -d -x
 
 ```
 ### Prerequisites
@@ -34,7 +34,7 @@ Parsing.py -d -x
 What things you need to install the software and how to install them
 
 ```
-Python 3
+python3
 ```
 
 
@@ -50,7 +50,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/TheFrenchKiwi/GenieLogiciel) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/TheFrenchKiwi/GenieLogiciel/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 
 ## Authors
