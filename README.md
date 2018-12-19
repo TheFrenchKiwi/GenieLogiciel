@@ -4,29 +4,50 @@ Simple pdf converter to xml or txt
 ## Getting Started
 First copy the ".py" file in your directory where your pdf are .
 
-* To use it to creating xml file Only :
+* To see option:
 
 ```
-Parsing.py -x
+Parsing.py --help
 
 ```
-
 * To use it to creating Txt file Only :
 
 ```
-python3 Parsing.py -t
+python3 Parsing.py --xml
+
+```
+* To use it to creating Txt file Only :
+
+```
+python3 Parsing.py --txt
 
 ```
 
 * To delete exixsting directory:
 
 ```
-python3 Parsing.py -d
+python3 Parsing.py --delete
 
 ```
+* To use it to creating Txt file Only on the target file:
+
+```
+python3 Parsing.py --targetT [target]
+
+
+```
+* To use it to creating XML file Only on the target file:
+
+```
+python3 Parsing.py --targetX [target]
+
+```
+
+
+
 * You can also use two option : 
 ```
-python3 Parsing.py -d -x
+python3 Parsing.py --delete -xml
 
 ```
 ### Prerequisites
