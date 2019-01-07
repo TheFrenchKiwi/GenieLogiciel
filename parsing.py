@@ -392,7 +392,7 @@ def cli_progress_test(func,end_val, bar_length=20):
         percent = float(i) / end_val
         hashes = '=' * int(round(percent * bar_length))
         spaces = '' * (bar_length - len(hashes))
-        sys.stdout.write("\r"+func+":					[8{0}] {1}%".format(hashes + spaces, int(round(percent * 100))))
+        sys.stdout.write("\r"+func+":					[{0}] {1}%".format(hashes + spaces, int(round(percent * 100))))
         
         sys.stdout.flush()	
         		
