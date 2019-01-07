@@ -24,9 +24,12 @@ python3 Parsing.py -t
 python3 Parsing.py -d
 
 ```
-* You can also use two option : 
+* You can also use optional option : 
 ```
-python3 Parsing.py -d -x
+python3 Parsing.py -h, --help         show this help message and exit
+python3 Parsing.py --delete           delete all text and xml and all folder in the current directory
+python3 Parsing.py --xml              convert to xml
+python3 Parsing.py --txt              convert to text
 
 ```
 ### Prerequisites
