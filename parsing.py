@@ -7,6 +7,7 @@ import argparse
 import xml.etree.ElementTree as ET
 from lxml import etree
 import time
+
 def createXmlFile(text):
 				
 		filename = text+".xml"
@@ -139,7 +140,9 @@ def parsingTxt():
 								f.close
 									
 					
-			
+
+										
+	
 def parsingXml():
 	listFichierPdf = os.listdir('.') 
 	dir_path = os.path.dirname(os.path.abspath(__file__))
@@ -166,30 +169,51 @@ def parsingXml():
 								
 										titre=titre.replace("_"," ") 
 										elem.text = titre
-							for elem in root.iter('abstract'):  
-										elem.text = textfile_temp.split("abstract")[1].split("introduction")[0]
-										tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml',encoding="utf-8") 
-							for elem in root.iter('biblio'):  
-										elem.text = textfile_temp.split("references")[1].split("\n\n")[0]
-										tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml',encoding="utf-8") 
-							for elem in root.iter('conclusions'):
-							
-										elem.text =  textfile_temp.split("references")[1].split("conclusions")[0] #### a modifier
-										
-										tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml') 			
-										
-							for elem in root.iter('corps'):
-										
-										special = u"\u2022"
-										
-										elem.text =  textfile_temp.split("introduction")[1].split("acknowledgements")[0].replace(special,'X')
-										
-										tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml') 
-									
-							for elem in root.iter('preamble'):  
-										elem.text = os.path.splitext(os.path.basename(i))[0] +"\n"
-										tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml',encoding="utf-8") 
-	
+							try :
+								for elem in root.iter('abstract'):  
+											elem.text = textfile_temp.split("abstract")[1].split("introduction")[0]
+											tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml',encoding="utf-8") 
+							except Exception:
+										print("Error,Hey dud couldn't find abstract or introduction")
+										with open(i, "r") as f:
+											for x , line in enumerate(f):
+												if x == 6  :
+													for elem in root.iter('abstract'):  
+															
+															elem.text = textfile_temp.split(line)[1].split("introduction")[0]
+															tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml',encoding="utf-8") 
+											
+							try:			
+								for elem in root.iter('biblio'):  
+											elem.text = textfile_temp.split("references")[1].split("\n\n")[0]
+											tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml',encoding="utf-8") 
+							except Exception:
+										print("Error,Hey dud couldn't find reference")
+							try	 :	
+								for elem in root.iter('conclusions'):
+								
+											elem.text =  textfile_temp.split("references")[1].split("conclusions")[0] #### a modifier
+											
+											tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml') 			
+							except Exception:
+										print("Error,Hey dud couldn't find reference or conclusions")		
+							try	:
+								for elem in root.iter('corps'):
+											
+											special = u"\u2022"
+											
+											elem.text =  textfile_temp.split("introduction")[1].split("acknowledgements")[0].replace(special,'X')
+											
+											tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml') 
+							except Exception:
+										print("Error,Hey dud couldn't find acknowledgments")			
+							try:
+								for elem in root.iter('preamble'):  
+											elem.text = os.path.splitext(os.path.basename(i))[0] +"\n"
+											tree.write(os.path.splitext(os.path.basename(i))[0]+'.xml',encoding="utf-8") 
+							except Exception:
+										print("Error,Hey dud couldn't find preamble")
+		
 					
 def lower():
 	listFichierPdf = os.listdir('.') 
@@ -298,38 +322,41 @@ def parsingXmlByFile(file):
 										tree.write(os.path.splitext(os.path.basename(file))[0]+'.xml',encoding="utf-8")
 										
 						with open(os.path.splitext(file)[0]+".txt", "r") as f:	
-							textfile_temp = f.read()
-							for elem in root.iter('titre'):
-								
-										titre=titre.replace("_"," ") 
-										elem.text = titre
-							for elem in root.iter('abstract'):  
-										elem.text = textfile_temp.split("abstract")[1].split("introduction")[0]
-										tree.write(os.path.splitext(os.path.basename(file))[0]+'.xml',encoding="utf-8") 
-							for elem in root.iter('biblio'):  
-										elem.text = textfile_temp.split("references")[1].split("\n\n")[0]
-										tree.write(os.path.splitext(os.path.basename(file))[0]+'.xml',encoding="utf-8") 
-							for elem in root.iter('conclusions'):
 							
-										elem.text =  textfile_temp.split("references")[1].split("conclusions")[0] #### a modifier
+								textfile_temp = f.read()
+								for elem in root.iter('titre'):
+									titre=titre.replace("_"," ") 
+									elem.text = titre
+								try:
+									for elem in root.iter('abstract'):  
+													elem.text = textfile_temp.split("abstract")[1].split("introduction")[0]
 										
-										tree.write(os.path.splitext(os.path.basename(file))[0]+'.xml') 			
+													tree.write(os.path.splitext(os.path.basename(file))[0]+'.xml',encoding="utf-8") 
 										
-							for elem in root.iter('corps'):
-										
-										special = u"\u2022"
-										
-										elem.text =  textfile_temp.split("introduction")[1].split("acknowledgements")[0].replace(special,'X')
-										
-										tree.write(os.path.splitext(os.path.basename(file))[0]+'.xml') 
-									
-							for elem in root.iter('preamble'):  
-										elem.text = os.path.splitext(os.path.basename(file))[0] +"\n"
-										tree.write(os.path.splitext(os.path.basename(file))[0]+'.xml',encoding="utf-8") 
-
-
-
-
+											
+									for elem in root.iter('biblio'):  
+														elem.text = textfile_temp.split("references")[1].split("\n\n")[0]
+														tree.write(os.path.splitext(os.path.basename(file))[0]+'.xml',encoding="utf-8") 
+									for elem in root.iter('conclusions'):
+											
+														elem.text =  textfile_temp.split("references")[1].split("conclusions")[0] #### a modifier
+														
+														tree.write(os.path.splitext(os.path.basename(file))[0]+'.xml') 			
+														
+									for elem in root.iter('corps'):
+														
+														special = u"\u2022"
+														
+														elem.text =  textfile_temp.split("introduction")[1].split("acknowledgements")[0].replace(special,'X')
+														
+														tree.write(os.path.splitext(os.path.basename(file))[0]+'.xml') 
+													
+									for elem in root.iter('preamble'):  
+														elem.text = os.path.splitext(os.path.basename(file))[0] +"\n"
+														tree.write(os.path.splitext(os.path.basename(file))[0]+'.xml',encoding="utf-8") 
+								
+								except Exception:
+										print("Error,Hey dud couldn't find Profile the word u ask")
 
 
 def movexmlByFile(file):
